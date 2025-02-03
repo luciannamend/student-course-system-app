@@ -30,3 +30,4 @@ build/
 
 # OS-specific files
 Thumbs.db
+/backend/node_modules/
