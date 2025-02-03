@@ -5,14 +5,15 @@ require('dotenv').config();
 
 // routes
 const studentRoutes = require("./routes/studentRoutes");
+const courseRoutes = require("./routes/courseRoutes");
 
 // express
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// student routes
 app.use("/api/students", studentRoutes);
+app.use("/api/courses", courseRoutes);
 
 // port
 const PORT = process.env.PORT || 5000;
