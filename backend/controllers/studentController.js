@@ -1,11 +1,11 @@
-const Student = require("../model/Student");
+const Student = require("../models/Student");
 const bcrypt = require("bcryptjs");
 
 // Get all students
 const getAllStudents = async (req, res) => {
   try {
     const students = await Student.find();
-    res.json(students);
+    res.status(200).json(students);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -15,8 +15,10 @@ const getAllStudents = async (req, res) => {
 const getStudentById = async (req, res) => {
   try {
     const student = await Student.findById(req.params.id);
-    if (!student) return res.status(404).json({ error: "Student not found" });
-    res.json(student);
+    if (!student){
+      return res.status(404).json({ error: "Student not found" })
+    };
+    res.status(200).json(student);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -40,8 +42,13 @@ const updateStudent = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    if (!student) return res.status(404).json({ error: "Student not found" });
-    res.json(student);
+
+    // if student was not updated, error 404
+    if (!student){
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    res.status(200).json(student);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
