@@ -1,6 +1,7 @@
 import { useState } from "react";
 //import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService"; // API call function
+import axios from "axios";
 
 const Login = () => {
     const [studentNumber, setStudentNumber] = useState("");
@@ -13,11 +14,15 @@ const Login = () => {
         setError("");
 
         try {
-            const response = await loginUser(studentNumber, password);
-            localStorage.setItem("token", response.token); // Store JWT token
-            console.log("USER AUTH SUCCESS");
-            //navigate("/dashboard"); // Redirect after successful login
-        } catch (err) {
+
+            await axios.post("http://localhost:5000/api/auth/login",
+                { studentNumber, password },
+                { withCredentials: true } // Allows sending HTTPOnly cookies
+            );
+
+            console.log("\nUSER AUTH SUCCESS");
+            //window.location.href = "/dashboard"; // Redirect after login
+        }  catch (err) {
             setError("Invalid student number or password");
         }
     };

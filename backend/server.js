@@ -11,7 +11,10 @@ const authRoutes = require("./routes/authRoutes");
 // express
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // React URL
+    credentials: true, // Allow sending credentials like cookies
+}));
 
 // use routes
 app.use("/api/students", studentRoutes);

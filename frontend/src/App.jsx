@@ -1,6 +1,7 @@
 import './styles/App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
                     </nav>
                     <Routes>
                         <Route path="/login" element={<Login />} />
+                        {/*<Route path="/manage-course" element={<ProtectedRoute><ManageCourse /></ProtectedRoute>} />*/}
                     </Routes>
                 </div>
 

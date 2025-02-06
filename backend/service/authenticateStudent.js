@@ -1,7 +1,13 @@
 const bcrypt = require('bcryptjs');
 const Student = require('../models/Student');
+const jwt = require("jsonwebtoken");
 
-async function authenticateStudent(studentNumber, plainTextPassword) {
+const generateToken = (studentId) => {
+    return jwt.sign({ id: studentId }, process.env.JWT_SECRET, { expiresIn: "1d" });
+};
+
+async function authenticateStudent(studentNumber, plainTextPassword, res) {
+
     try {
         // Retrieve the student by student number
         const student = await Student.findOne({ studentNumber });
@@ -14,12 +20,23 @@ async function authenticateStudent(studentNumber, plainTextPassword) {
         // Check if the provided password matches the stored hashed password
         const isMatch = await bcrypt.compare(plainTextPassword, student.password);
 
+        console.log("IS IT MATCHING? " + isMatch);
+
         if (isMatch) {
-            // Passwords match
-            return { success: true, message: 'Authentication successful.', student };
+            // Generate JWT token
+            const token = generateToken(student._id);
+
+            // Store token in HTTPOnly cookie
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "development", // Secure only locally
+                sameSite: "strict",
+                maxAge: 24 * 60 * 60 * 1000, // 1 day
+            });
+
+            return {success: true, message: "Authentication successful.", student};
         } else {
-            // Passwords do not match
-            return { success: false, message: 'Authentication failed. Incorrect password.' };
+            return { success: false, message: "Authentication failed. Incorrect password." };
         }
     } catch (error) {
         // Handle errors
