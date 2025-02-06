@@ -1,5 +1,6 @@
 const express = require('express');
 const { authenticateStudent } = require('../service/authenticateStudent');
+const {verify} = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -19,6 +20,23 @@ router.post('/login', async (req, res) => {
         res.status(401).json({ message: authResponse.message });
     }
 });
+
+// Middleware to check authentication
+router.get("/check-auth", (req, res) => {
+    try {
+        const token = req.cookies.token; // Get token from cookies
+        if (!token) {
+            return res.status(401).json({ message: "Unauthorized - No Token" });
+        }
+
+        // Verify JWT
+        const decoded = verify(token, process.env.JWT_SECRET);
+        res.json({ authenticated: true, user: decoded });
+    } catch (err) {
+        res.status(401).json({ message: "Unauthorized - Invalid Token" });
+    }
+});
+
 
 // POST /api/auth/logout
 router.post("/logout", (req, res) => {

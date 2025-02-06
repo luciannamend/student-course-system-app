@@ -1,13 +1,12 @@
 import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
-import { loginUser } from "../services/authService"; // API call function
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
     const [studentNumber, setStudentNumber] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +20,7 @@ const Login = () => {
             );
 
             console.log("\nUSER AUTH SUCCESS");
-            //window.location.href = "/dashboard"; // Redirect after login
+            navigate("/courses"); // Redirect after login
         }  catch (err) {
             setError("Invalid student number or password");
         }
