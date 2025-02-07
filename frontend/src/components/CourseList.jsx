@@ -1,6 +1,6 @@
-import React from "react";
+import CourseActions from "./CourseActions";
 
-const CourseList = ({ courses, onEdit, onDelete }) => {
+const CourseList = ({ courses, onEdit, onDelete, onAddStudent, showActions = {} }) => {
     return (
         <div>
             <h3>Course List</h3>
@@ -8,8 +8,15 @@ const CourseList = ({ courses, onEdit, onDelete }) => {
                 {courses.map((course) => (
                     <li key={course._id}>
                         <p>{course.courseCode} ({course.section}) - {course.courseName}</p>
-                        <button onClick={() => onEdit(course)}>Edit</button>
-                        <button onClick={() => onDelete(course._id)}>Delete</button>
+
+
+                        <CourseActions
+                            course={course}
+                            onEdit={onEdit}
+                            onDelete={onDelete}
+                            onAddStudent={onAddStudent}
+                            showActions={showActions}
+                        />
                     </li>
                 ))}
             </ul>
