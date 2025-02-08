@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ManageCourse from "./pages/ManageCourse";
 import ManageStudent from "./pages/ManageStudent";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
                     <nav>
                         <Link to="/login"> [Login] </Link> ||
                         <Link to="/courses"> [Manage Course] </Link> ||
-                        <Link to="/students"> [Manage Students] </Link>
+                        <Link to="/students"> [Manage Students] </Link> ||
+                        <Link to="/logout"> [Logout] </Link>
                     </nav>
                     <Routes>
                         <Route path="/login" element={<Login />} />
@@ -34,6 +36,14 @@ function App() {
                             element={
                                 <ProtectedRoute>
                                     <ManageStudent />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/logout"
+                            element={
+                                <ProtectedRoute>
+                                    <Logout />
                                 </ProtectedRoute>
                             }
                         />

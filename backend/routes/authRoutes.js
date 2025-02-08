@@ -15,6 +15,8 @@ router.post('/login', async (req, res) => {
     const authResponse = await authenticateStudent(studentNumber, password, res);
 
     if (authResponse.success) {
+        console.log("MSG: " + authResponse.message);
+        console.log("STUDENT: " + authResponse.student );
         res.status(200).json({ message: authResponse.message, student: authResponse.student });
     } else {
         res.status(401).json({ message: authResponse.message });
@@ -22,6 +24,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Middleware to check authentication
+// GET /api/auth/check-auth
 router.get("/check-auth", (req, res) => {
     try {
         const token = req.cookies.token; // Get token from cookies

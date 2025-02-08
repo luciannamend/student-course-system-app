@@ -8,8 +8,7 @@ const CourseList = ({ courses, onEdit, onDelete, onAddStudent, showActions = {} 
                 {courses.map((course) => (
                     <li key={course._id}>
                         <p>{course.courseCode} ({course.section}) - {course.courseName}</p>
-
-
+                        
                         <CourseActions
                             course={course}
                             onEdit={onEdit}
