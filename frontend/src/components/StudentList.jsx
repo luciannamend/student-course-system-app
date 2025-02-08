@@ -7,7 +7,9 @@ const StudentList = ({ students}) => {
             <ul>
                 {students.map((student) => (
                     <li key={student._id}>
-                        <p>{student.studentNumber} - {student.firstName} {student.lastName}</p>
+                        <p>Student Number:<strong>{student.studentNumber}</strong> </p>
+                        <p>Student Name: <strong>{student.firstName} {student.lastName}</strong></p>
+                        <p>Student Id: <strong>{student._id}</strong> </p>
                     </li>
                 ))}
             </ul>

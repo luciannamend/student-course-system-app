@@ -16,10 +16,10 @@ function App() {
                 </h2>
                 <div>
                     <nav>
-                        <Link to="/login"> [Login] </Link> ||
-                        <Link to="/courses"> [Manage Course] </Link> ||
-                        <Link to="/students"> [Manage Students] </Link> ||
-                        <Link to="/logout"> [Logout] </Link>
+                        <Link to="/login">  Login  </Link> ||
+                        <Link to="/courses">  Manage Course  </Link> ||
+                        <Link to="/students">  Manage Students  </Link> ||
+                        <Link to="/logout">  Logout  </Link>
                     </nav>
                     <Routes>
                         <Route path="/login" element={<Login />} />

@@ -32,7 +32,8 @@ const Logout = () => {
 
             <form onSubmit={handleSubmit}>
                 <p>Are you sure you want to logout? </p>
-                <button type="submit">Yes</button>
+
+                <button className="btn-danger" type="submit"> Logout</button>
             </form>
         </div>
     );

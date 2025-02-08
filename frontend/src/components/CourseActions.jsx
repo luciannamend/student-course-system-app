@@ -9,10 +9,9 @@ const CourseActions = ({ course, onEdit, onDelete, onAddStudent, showActions }) 
             {showActions.delete && <button className="btn-danger" onClick={() => onDelete(course._id)}>Delete</button>}
 
             {showActions.addStudent && (
-                <>
+                <div className="course-action">
                     <p>Students taking this course: </p>
-                        <p> {course.students.join(" || ") || "None"} </p>
-
+                        <p><strong> {course.students.join(", ") || "None"} </strong></p>
                     <input
                         type="text"
                         value={studentId}
@@ -25,7 +24,7 @@ const CourseActions = ({ course, onEdit, onDelete, onAddStudent, showActions }) 
                     }}>
                         Add Student
                     </button>
-                </>
+                </div>
             )}
         </div>
     );

@@ -43,11 +43,24 @@ h2 {
   margin-top: 20px;
 }
 
+h3 {
+  color: rgba(12, 12, 14, 0.86);
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 
-div {
+.App {
   background-color: #c9cad9;
   padding: 5px;
   border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.course-action {
+  background-color: rgba(92, 103, 125, 0.22);
+  border-radius: 8px;
+  padding: 10px;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -68,12 +81,32 @@ input[type="text"] {
   font-size: 16px;
 }
 
+input[type="password"] {
+  width: 100%;
+  flex: 1;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input[type="email"] {
+  width: 100%;
+  flex: 1;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
 button {
   background-color: #0353a4;
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 10px 0;
+  margin: 10px;
   cursor: pointer;
   border-radius: 4px;
   font-size: 16px;
