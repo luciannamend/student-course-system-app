@@ -11,9 +11,9 @@ function App() {
       <>
         <div className="App">
             <header className="App-header">
-                <p>
+                <h2>
                     Welcome to Student Course System
-                </p>
+                </h2>
                 <div>
                     <nav>
                         <Link to="/login"> [Login] </Link> ||

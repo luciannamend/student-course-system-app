@@ -6,7 +6,7 @@ const CourseActions = ({ course, onEdit, onDelete, onAddStudent, showActions }) 
     return (
         <div>
             {showActions.edit && <button onClick={() => onEdit(course)}>Edit</button>}
-            {showActions.delete && <button onClick={() => onDelete(course._id)}>Delete</button>}
+            {showActions.delete && <button className="btn-danger" onClick={() => onDelete(course._id)}>Delete</button>}
 
             {showActions.addStudent && (
                 <>
