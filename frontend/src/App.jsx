@@ -34,7 +34,7 @@ function App() {
                         <Route
                             path="/students"
                             element={
-                                <ProtectedRoute>
+                                <ProtectedRoute adminOnly={true}>
                                     <ManageStudent />
                                 </ProtectedRoute>
                             }

@@ -34,7 +34,10 @@ router.get("/check-auth", (req, res) => {
 
         // Verify JWT
         const decoded = verify(token, process.env.JWT_SECRET);
-        res.json({ authenticated: true, user: decoded });
+        console.log("DECODED::: " + decoded.id);
+        const userId = decoded.id;
+
+        res.status(200).json({ authenticated: true, user: userId });
     } catch (err) {
         res.status(401).json({ message: "Unauthorized - Invalid Token" });
     }

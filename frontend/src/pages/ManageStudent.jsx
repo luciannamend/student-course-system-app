@@ -30,6 +30,12 @@ const ManageStudent = () => {
         }, []
     );
 
+    // Check if there is at least one student with firstName === "Admin"
+    const isAdmin = students.some(student => student.firstName === "Admin");
+    if (!isAdmin) {
+        return <p>Access Denied</p>;
+    }
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewStudent({ ...newStudent, [name]: value });
